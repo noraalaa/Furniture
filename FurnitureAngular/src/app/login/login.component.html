@@ -1,0 +1,28 @@
+<div class="m-5">
+    <h2>Login in furniture</h2>
+<form [formGroup]="formGroup">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input  formControlName="Email" type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email">
+      <div *ngIf="formGroup.controls['Email'].invalid && (formGroup.controls['Email'].touched || formGroup.controls['Email'].dirty)">
+        <small class="form-text text-danger" *ngIf="formGroup.controls['Email'].hasError('required')">required email</small>
+        <small class="form-text text-danger" *ngIf="formGroup.controls['Email'].hasError('email')">invalid email</small>  
+        <small class="form-text text-danger" *ngIf="formGroup.controls['Email'].hasError('minlength')">min length is 5</small> 
+        <small class="form-text text-danger" *ngIf="formGroup.controls['Email'].hasError('maxlength')">max length is 30</small> 
+    </div>
+      
+    </div>
+    <div class="form-group">
+      <label >Password</label>
+      <input formControlName="Password" class="form-control" placeholder="Password">
+    </div>
+    <div *ngIf="formGroup.controls['Password'].invalid && (formGroup.controls['Password'].touched || formGroup.controls['Password'].dirty)">
+        <small class="form-text text-danger" *ngIf="formGroup.controls['Password'].hasError('required')">Required password</small>
+        <small class="form-text text-danger" *ngIf="formGroup.controls['Password'].hasError('minlength')">min length is 6</small> 
+        <small class="form-text text-danger" *ngIf="formGroup.controls['Password'].hasError('maxlength')">max length is 18</small> 
+    </div>
+    <button type="submit" [disabled]="formGroup.invalid" (click)="login()" class="btn btn-primary">Sign in</button>
+   
+    <br>
+  </form>
+</div>

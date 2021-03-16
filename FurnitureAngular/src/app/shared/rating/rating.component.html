@@ -1,0 +1,8 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div *ngIf = "star==0; else other_content">No Rating</div>
+<ng-template #other_content>
+<span class="fa fa-star" *ngFor = "let indexStar of NumberOfStars; let currentIndex = index" [class.checked] = "star>=indexStar" (click) = "changeRathig(indexStar)" >
+
+</span>
+</ng-template>

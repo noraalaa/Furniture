@@ -1,0 +1,25 @@
+<!-- BODY THREE -->
+<div class="m-5">
+  <div class="input-group mb-3 " style="width: 500px;">
+    <input type="text" class="form-control" #inputsearchname placeholder="Search by name"
+      (keyup.enter)="searchProduct(inputsearchname.value);inputsearchname.value=''">
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit"
+        (click)="searchProduct(inputsearchname.value);inputsearchname.value=''">Go</button>
+    </div>
+  </div>
+
+  <div class="form-group" style="width: 200px;">
+    <label for="sel1">Sort by Price:</label>
+    <select class="form-control" id="sel1" [(ngModel)]="selectedPrice">
+      <option value="0">No sort</option>
+      <option value="-1">more to less</option>
+      <option value="1">less to more</option>
+    </select>
+  </div>
+
+  <h2 style="text-align: center;">{{messageFromMongo}}</h2>
+  <app-cardproduct [furnitures]="furnitures" [isLoaded]="isLoaded"></app-cardproduct>
+
+
+</div>

@@ -1,0 +1,12 @@
+<div class="m-5">
+    <div class="media border p-3" *ngIf="isLoaded">
+        <img [src]="furnitures.Image" alt="product" class="mr-3 mt-3 " style="width:200px; height: 250px;">
+        <div class="media-body">
+          <h4>Product Number: {{furnitures.ID}}</h4>
+          <p>Product Name: {{furnitures.Name}}</p>
+          <p>Description is: {{furnitures.Description}}</p>
+          <p>From Collection: {{furnitures.Collection}} </p> 
+          <p>Its Price: {{furnitures.Price}}</p>
+        </div>
+      </div>
+</div>

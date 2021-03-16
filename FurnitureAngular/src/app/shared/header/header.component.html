@@ -1,0 +1,25 @@
+<!-- Header -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-3">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown">user</a>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/adduser" *ngIf="!isLogged">SignUP</a>
+        <a class="dropdown-item" routerLink="/user">Show Users</a>
+        <a class="dropdown-item" routerLink="/login" *ngIf="!isLogged">login</a>
+        <a class="dropdown-item" routerLink="/logout" *ngIf="isLogged">logout</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown">furniture</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/furniture">All Furnitures</a>
+          <a class="dropdown-item" routerLink="/addfurniture">Add Furniture</a>
+          <a class="dropdown-item" routerLink="/searchfurniture">Search for Furniture</a>
+          <a class="dropdown-item" routerLink="/partfurniture/0">Part of Furniture</a>
+  
+        </div>
+      </li>
+    </ul>
+  </nav>
+  

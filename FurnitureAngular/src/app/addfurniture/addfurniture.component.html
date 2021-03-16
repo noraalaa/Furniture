@@ -1,0 +1,81 @@
+<!-- BODY TWO -->
+<div class="m-5">
+
+    <form [formGroup]='formGroup'>
+        <h2>Add Product to Database</h2>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" formControlName="Name" #inputaddname class="form-control" placeholder="Write Name">
+            <div
+                *ngIf="formGroup.controls['Name'].invalid && (formGroup.controls['Name'].touched || formGroup.controls['Name'].dirty)">
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Name'].hasError('required')">Required
+                    Name</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Name'].hasError('minlength')">min length
+                    is
+                    5</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Name'].hasError('maxlength')">max length
+                    is
+                    10</small>
+            </div>
+            <br>
+            <label>Image:</label>
+            <input type="text" formControlName="Image" #inputaddimage class="form-control"
+                placeholder="Write URL Image">
+            <div
+                *ngIf="formGroup.controls['Image'].invalid && (formGroup.controls['Image'].touched || formGroup.controls['Image'].dirty)">
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Image'].hasError('required')">Required
+                    Image</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Image'].hasError('pattern')">Should be
+                    xxx.jpg or jpeg or png or gif or bmp</small>
+            </div>
+            <br>
+            <label>Description:</label>
+            <input type="text" formControlName="Description" #inputadddescription class="form-control"
+                placeholder="Write its Description">
+            <div
+                *ngIf="formGroup.controls['Description'].invalid && (formGroup.controls['Description'].touched || formGroup.controls['Description'].dirty)">
+                <small class="form-text text-danger"
+                    *ngIf="formGroup.controls['Description'].hasError('required')">Required
+                    Description</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Description'].hasError('minlength')">min length is 10</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Description'].hasError('maxlength')">max length is 30</small>
+            </div>
+            <br>
+            <label>Collection:</label>
+            <input type="text" formControlName="Collection" #inputadddecollection class="form-control"
+                placeholder="Write its Collection">
+            <div
+                *ngIf="formGroup.controls['Collection'].invalid && (formGroup.controls['Collection'].touched || formGroup.controls['Collection'].dirty)">
+                <small class="form-text text-danger"
+                    *ngIf="formGroup.controls['Collection'].hasError('required')">Required
+                    Collection</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Collection'].hasError('minlength')">min length is 5</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Collection'].hasError('maxlength')">max length is 10</small>
+            </div>
+            <br>
+            <label>Price:</label>
+            <input type="text" formControlName="Price" #inputadddprice class="form-control"
+                placeholder="Write its Price">
+            <div
+                *ngIf="formGroup.controls['Price'].invalid && (formGroup.controls['Price'].touched || formGroup.controls['Price'].dirty)">
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Price'].hasError('required')">Required
+                    Name</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Price'].hasError('pattern')">Required
+                    Only Numbers</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Price'].hasError('minlength')">min length is 2</small>
+                <small class="form-text text-danger" *ngIf="formGroup.controls['Price'].hasError('maxlength')">max length is 5</small>
+            </div>
+            <br>
+        </div>
+        <button type="submit" [disabled]="formGroup.invalid" class="btn btn-success float-right btn-lg"
+            data-dismiss="modal"
+            (click)='addProduct ();
+            inputaddname.value = "";
+            inputaddimage.value="";
+            inputadddescription.value="";
+            inputadddecollection.value="";
+            inputadddprice.value=""'>ADD
+        </button>
+        <div class="clearfix"></div>
+    </form>
+</div>

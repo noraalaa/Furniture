@@ -1,0 +1,116 @@
+
+    <h4 *ngIf="!isLoaded">Loading product...</h4>
+    <div *ngIf="furnitures.length==0 && isLoaded">No product Found</div>
+    <h2 *ngIf="furnitures.length > 0 && isLoaded" >Product List</h2>
+    <div class="d-inline-flex justify-content-center flex-wrap bg-light">
+        <div *ngFor="let furniture of  furnitures; let currentIndex = index;" class="card m-3" style="width:400px">
+            <img class="card-img-top" src="{{furniture.Image}}" height="300px" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">{{furniture.Name}}</h4>
+                <p class="card-text">{{furniture.Description}}<span> {{furniture.Price}} $</span></p>
+                <div class="d-flex justify-content-around  mt-3">
+                    <!-- Button to Open the Modal -->
+                    <a routerLink = '/detailfurniture/{{furniture.ID}}' class="btn btn-info ">Details</a>
+                    <button *ngIf="!furniture.isUpdating" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" (click) = "getIndex(currentIndex)">Update</button>
+                    <img *ngIf="furniture.isUpdating" src="/assets/images/ajax-loader.gif">
+                    <button *ngIf="!furniture.isDeleting" type="button" (click)="deleteProduct(currentIndex)" class="btn btn-danger ">Delete</button>
+                    <img *ngIf="furniture.isDeleting" src="/assets/images/ajax-loader.gif">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The Modal -->
+<div class="modal fade" id="myModal" *ngIf="getIndexToupdate>=0">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Update Product </h4>
+                <button type="button" class="close" data-dismiss="modal" >&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form [formGroup]='formGroup'>
+                    <input type="text" hidden #inputupdateid [value]="furnitures[getIndexToupdate].ID">
+                    <label>Name:</label>
+                    <input type="text" formControlName="Name" #inputupdatename class="form-control">
+                    <div
+                        *ngIf="formGroup.controls['Name'].invalid">
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Name'].hasError('required')">Required
+                            Name</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Name'].hasError('minlength')">min length
+                            is
+                            5</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Name'].hasError('maxlength')">max length
+                            is
+                            10</small>
+                    </div>
+                    <label>Image:</label>
+                    <input type="text" formControlName="Image" #inputupdateimage class="form-control">
+                    <div
+                        *ngIf="formGroup.controls['Image'].invalid">
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Image'].hasError('required')">Required
+                            Image</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Image'].hasError('pattern')">Should be
+                            xxx.jpg or jpeg or png or gif or bmp</small>
+                    </div>
+                    <label>Description:</label>
+                    <input type="text" formControlName="Description" #inputupdatedescription class="form-control">
+                    <div
+                        *ngIf="formGroup.controls['Description'].invalid">
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Description'].hasError('required')">Required
+                            Description</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Description'].hasError('minlength')">min length is 10</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Description'].hasError('maxlength')">max length is 30</small>
+                    </div>
+                    <label>Collection:</label>
+                    <input formControlName="Collection" type="text" #inputupdatedecollection class="form-control">
+                    <div
+                        *ngIf="formGroup.controls['Collection'].invalid">
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Collection'].hasError('required')">Required
+                            Collection</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Collection'].hasError('minlength')">min length is 5</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Collection'].hasError('maxlength')">max length is 10</small>
+                    </div>
+                    <label>Price:</label>
+                    <input type="text" formControlName="Price" #inputupdatedprice class="form-control">
+                    <div
+                        *ngIf="formGroup.controls['Price'].invalid">
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Price'].hasError('required')">Required
+                            Name</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Price'].hasError('pattern')">Required
+                            Only Numbers</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Price'].hasError('minlength')">min length is 2</small>
+                        <small class="form-text text-danger"
+                            *ngIf="formGroup.controls['Price'].hasError('maxlength')">max length is 5</small>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" [disabled]="formGroup.invalid" class="btn btn-success" data-dismiss="modal"
+                    (click)='updateProduct(+inputupdateid.value);'>Update</button>
+            </div>
+
+        </div>
+    </div>
+</div>
